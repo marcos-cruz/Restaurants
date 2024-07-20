@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{BA54C0A1-C0D8-4E28-8839-181863A46FF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{F2774D7F-63D2-4C98-9075-2617747C4AFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C6E2EDFF-5B12-478A-A7B8-0D2556429CF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BF25BE4C-BAA2-4EEA-98AE-5E558D11F8C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bigai.Restaurants.Api", "src\Bigai.Restaurants.Api\Bigai.Restaurants.Api.csproj", "{EB6E720E-4B3A-4181-BFF8-57E3A689EC6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bigai.Restaurants.Application", "src\Bigai.Restaurants.Application\Bigai.Restaurants.Application.csproj", "{753FD5C0-5CC0-4F92-8B0E-20467059CBE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bigai.Restaurants.Domain", "src\Bigai.Restaurants.Domain\Bigai.Restaurants.Domain.csproj", "{86227F5A-1F03-4AE9-8848-3D1AA108938A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bigai.Restaurants.Infrastructure", "src\Bigai.Restaurants.Infrastructure\Bigai.Restaurants.Infrastructure.csproj", "{09529E3E-AC58-475C-A858-73D1E4B607E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB6E720E-4B3A-4181-BFF8-57E3A689EC6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6E720E-4B3A-4181-BFF8-57E3A689EC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6E720E-4B3A-4181-BFF8-57E3A689EC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6E720E-4B3A-4181-BFF8-57E3A689EC6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{753FD5C0-5CC0-4F92-8B0E-20467059CBE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{753FD5C0-5CC0-4F92-8B0E-20467059CBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{753FD5C0-5CC0-4F92-8B0E-20467059CBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{753FD5C0-5CC0-4F92-8B0E-20467059CBE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86227F5A-1F03-4AE9-8848-3D1AA108938A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86227F5A-1F03-4AE9-8848-3D1AA108938A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86227F5A-1F03-4AE9-8848-3D1AA108938A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86227F5A-1F03-4AE9-8848-3D1AA108938A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09529E3E-AC58-475C-A858-73D1E4B607E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09529E3E-AC58-475C-A858-73D1E4B607E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09529E3E-AC58-475C-A858-73D1E4B607E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09529E3E-AC58-475C-A858-73D1E4B607E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB6E720E-4B3A-4181-BFF8-57E3A689EC6F} = {F2774D7F-63D2-4C98-9075-2617747C4AFB}
+		{753FD5C0-5CC0-4F92-8B0E-20467059CBE3} = {C6E2EDFF-5B12-478A-A7B8-0D2556429CF4}
+		{86227F5A-1F03-4AE9-8848-3D1AA108938A} = {BA54C0A1-C0D8-4E28-8839-181863A46FF0}
+		{09529E3E-AC58-475C-A858-73D1E4B607E3} = {BF25BE4C-BAA2-4EEA-98AE-5E558D11F8C2}
+	EndGlobalSection
+EndGlobal
