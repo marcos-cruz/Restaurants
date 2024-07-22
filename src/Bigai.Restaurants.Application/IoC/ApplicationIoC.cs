@@ -1,13 +1,13 @@
-using Bigai.Restaurants.Application.Restaurants;
+using Bigai.Restaurants.Application.Restaurants.Services;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Bigai.Restaurants.Application.Extensions;
+namespace Bigai.Restaurants.Application.Ioc;
 
 /// <summary>
-/// <see cref="ServiceCollectionExtensions"/> Provides support for application layer dependency injection.
+/// <see cref="ApplicationIoC"/> Provides support for application layer dependency injection.
 /// </summary>
-public static class ServiceCollectionExtensions
+public static class ApplicationIoC
 {
     /// <summary>
     /// Registers the given context as a service in the IServiceCollection.

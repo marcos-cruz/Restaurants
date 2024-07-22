@@ -1,6 +1,6 @@
-using Bigai.Restaurants.Infrastructure.Data.Extensions;
+using Bigai.Restaurants.Infrastructure.IoC;
 using Bigai.Restaurants.Infrastructure.Seeders;
-using Bigai.Restaurants.Application.Extensions;
+using Bigai.Restaurants.Application.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 

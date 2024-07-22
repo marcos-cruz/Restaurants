@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Bigai.Restaurants.Infrastructure.Data.Extensions;
+namespace Bigai.Restaurants.Infrastructure.IoC;
 
 /// <summary>
-/// <see cref="ServiceCollectionExtensions"/> Provides support for infrastructure layer dependency injection.
+/// <see cref="InfrastructureIoC"/> Provides support for infrastructure layer dependency injection.
 /// </summary>
-public static class ServiceCollectionExtensions
+public static class InfrastructureIoC
 {
     /// <summary>
     /// Registers the given context as a service in the IServiceCollection.

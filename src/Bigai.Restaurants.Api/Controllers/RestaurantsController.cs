@@ -1,4 +1,4 @@
-using Bigai.Restaurants.Application.Restaurants;
+using Bigai.Restaurants.Application.Restaurants.Services;
 
 using Microsoft.AspNetCore.Mvc;
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bigai.Restaurants.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(RestaurantsDbContext))]
-    [Migration("20240720203429_InitialCreate")]
+    [Migration("20240722173319_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -39,6 +39,9 @@ namespace Bigai.Restaurants.Infrastructure.Data.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("KiloCalories")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
