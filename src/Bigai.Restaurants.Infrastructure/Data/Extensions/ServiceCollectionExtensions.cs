@@ -1,4 +1,5 @@
 using Bigai.Restaurants.Infrastructure.Persistence;
+using Bigai.Restaurants.Infrastructure.Seeders;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,8 @@ public static class ServiceCollectionExtensions
         var connectionString = configuration.GetConnectionString("RestaurantsDb");
 
         services.AddDbContext<RestaurantsDbContext>(options => options.UseSqlServer(connectionString));
+
+        services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
 
         return services;
     }
