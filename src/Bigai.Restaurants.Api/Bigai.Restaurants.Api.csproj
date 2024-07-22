@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bigai.Restaurants.Application\Bigai.Restaurants.Application.csproj" />
+    <ProjectReference Include="..\Bigai.Restaurants.Infrastructure\Bigai.Restaurants.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
