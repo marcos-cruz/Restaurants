@@ -1,5 +1,7 @@
 using Bigai.Restaurants.Infrastructure.Persistence;
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bigai.Restaurants.Infrastructure.Data.Extensions;
@@ -14,9 +16,11 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<RestaurantsDbContext>();
+        var connectionString = configuration.GetConnectionString("RestaurantsDb");
+
+        services.AddDbContext<RestaurantsDbContext>(options => options.UseSqlServer(connectionString));
 
         return services;
     }

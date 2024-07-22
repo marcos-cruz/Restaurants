@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Bigai.Restaurants.Api.Controllers;
 
 [ApiController]

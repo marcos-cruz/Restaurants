@@ -11,9 +11,9 @@ internal class RestaurantsDbContext : DbContext
     internal DbSet<Restaurant> Restaurants { get; set; }
     internal DbSet<Dish> Dishes { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> options) : base(options)
     {
-        optionsBuilder.UseSqlServer("Server=localhost; Database=RestaurantsDb; User Id=sa; Password=Pass@word123; TrustServerCertificate=True");
+
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
