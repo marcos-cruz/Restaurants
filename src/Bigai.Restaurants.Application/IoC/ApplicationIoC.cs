@@ -18,6 +18,8 @@ public static class ApplicationIoC
     {
         services.AddScoped<IRestaurantsService, RestaurantsService>();
 
+        services.AddAutoMapper(typeof(ApplicationIoC).Assembly);
+
 
         return services;
     }
