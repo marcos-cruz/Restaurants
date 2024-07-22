@@ -1,5 +1,6 @@
 using Bigai.Restaurants.Infrastructure.Data.Extensions;
 using Bigai.Restaurants.Infrastructure.Seeders;
+using Bigai.Restaurants.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration)
+                .AddApplication();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

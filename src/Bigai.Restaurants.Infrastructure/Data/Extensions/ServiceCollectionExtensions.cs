@@ -1,4 +1,6 @@
+using Bigai.Restaurants.Domain.Repositories;
 using Bigai.Restaurants.Infrastructure.Persistence;
+using Bigai.Restaurants.Infrastructure.Repositories;
 using Bigai.Restaurants.Infrastructure.Seeders;
 
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,7 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<RestaurantsDbContext>(options => options.UseSqlServer(connectionString));
 
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
+        services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
 
         return services;
     }

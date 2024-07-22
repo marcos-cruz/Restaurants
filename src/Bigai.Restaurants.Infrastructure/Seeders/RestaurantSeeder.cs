@@ -6,22 +6,22 @@ namespace Bigai.Restaurants.Infrastructure.Seeders;
 
 internal class RestaurantSeeder : IRestaurantSeeder
 {
-    private readonly RestaurantsDbContext dbContext;
+    private readonly RestaurantsDbContext _dbContext;
 
     public RestaurantSeeder(RestaurantsDbContext dbContext)
     {
-        this.dbContext = dbContext;
+        _dbContext = dbContext;
     }
 
     public async Task Seed()
     {
-        if (await dbContext.Database.CanConnectAsync())
+        if (await _dbContext.Database.CanConnectAsync())
         {
-            if (!dbContext.Restaurants.Any())
+            if (!_dbContext.Restaurants.Any())
             {
                 var restaurants = GetRestaurants();
-                dbContext.Restaurants.AddRange(restaurants);
-                await dbContext.SaveChangesAsync();
+                _dbContext.Restaurants.AddRange(restaurants);
+                await _dbContext.SaveChangesAsync();
             }
         }
     }

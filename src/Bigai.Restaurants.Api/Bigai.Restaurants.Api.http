@@ -1,6 +1,6 @@
 @BigaiRestaurantsApiHostAddress = http://localhost:7000
 
-GET {{BigaiRestaurantsApiHostAddress}}/weatherforecast/
+GET {{BigaiRestaurantsApiHostAddress}}/api/restaurants
 Accept: application/json
 
 ###
