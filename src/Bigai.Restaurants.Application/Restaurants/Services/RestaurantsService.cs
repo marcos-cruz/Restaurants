@@ -1,6 +1,7 @@
 using AutoMapper;
 
 using Bigai.Restaurants.Application.Restaurants.Dtos;
+using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Repositories;
 
 using Microsoft.Extensions.Logging;
@@ -20,6 +21,17 @@ internal class RestaurantsService : IRestaurantsService
         _restaurantsRepository = restaurantsRepository;
         _logger = logger;
         _mapper = mapper;
+    }
+
+    public async Task<int> CreateAsync(CreateRestaurantDto createRestaurantDto)
+    {
+        _logger.LogInformation("Creating a new restaurant");
+
+        var restaurant = _mapper.Map<Restaurant>(createRestaurantDto);
+
+        var restaurantId = await _restaurantsRepository.CreateAsync(restaurant);
+
+        return restaurantId;
     }
 
     public async Task<IEnumerable<RestaurantDto>> GetAllAsync()

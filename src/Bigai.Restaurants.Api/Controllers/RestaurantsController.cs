@@ -1,3 +1,4 @@
+using Bigai.Restaurants.Application.Restaurants.Dtos;
 using Bigai.Restaurants.Application.Restaurants.Services;
 
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,14 @@ public class RestaurantsController : ControllerBase
         }
 
         return Ok(restaurant);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateRestaurantDto createRestaurantDto)
+    {
+        var id = await _restaurantsService.CreateAsync(createRestaurantDto);
+
+        return CreatedAtAction(nameof(GetById), new { id }, null);
     }
 
 }
