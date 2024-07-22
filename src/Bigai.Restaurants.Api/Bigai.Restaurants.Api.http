@@ -4,3 +4,8 @@ GET {{BigaiRestaurantsApiHostAddress}}/api/restaurants
 Accept: application/json
 
 ###
+
+GET {{BigaiRestaurantsApiHostAddress}}/api/restaurants/1
+Accept: application/json
+
+###
