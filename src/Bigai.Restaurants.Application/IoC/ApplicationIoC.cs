@@ -1,5 +1,8 @@
 using Bigai.Restaurants.Application.Restaurants.Services;
 
+using FluentValidation;
+using FluentValidation.AspNetCore;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bigai.Restaurants.Application.Ioc;
@@ -16,9 +19,14 @@ public static class ApplicationIoC
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        var applicationAssembly = typeof(ApplicationIoC).Assembly;
+
         services.AddScoped<IRestaurantsService, RestaurantsService>();
 
-        services.AddAutoMapper(typeof(ApplicationIoC).Assembly);
+        services.AddAutoMapper(applicationAssembly);
+
+        services.AddValidatorsFromAssembly(applicationAssembly)
+                .AddFluentValidationAutoValidation();
 
 
         return services;
