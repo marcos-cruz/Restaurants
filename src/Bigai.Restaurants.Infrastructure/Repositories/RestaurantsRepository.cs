@@ -23,6 +23,12 @@ namespace Bigai.Restaurants.Infrastructure.Repositories
             return restaurant.Id;
         }
 
+        public async Task DeleteAsync(Restaurant restaurant)
+        {
+            _dbContext.Restaurants.Remove(restaurant);
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Restaurant>> GetAllAsync()
         {
             var restaurants = await _dbContext.Restaurants.ToListAsync();

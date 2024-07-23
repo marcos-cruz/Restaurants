@@ -10,6 +10,11 @@ Accept: application/json
 
 ###
 
+DELETE {{BigaiRestaurantsApiHostAddress}}/api/restaurants/4
+Accept: application/json
+
+###
+
 POST {{BigaiRestaurantsApiHostAddress}}/api/restaurants
 Content-Type: application/json
 
