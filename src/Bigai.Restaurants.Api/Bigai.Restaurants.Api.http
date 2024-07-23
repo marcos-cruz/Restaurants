@@ -31,3 +31,12 @@ Content-Type: application/json
 }
 
 ###
+
+PATCH  {{BigaiRestaurantsApiHostAddress}}/api/restaurants/2
+Content-Type: application/json
+
+{
+    "Name": "Spicy Delights",
+    "Description": "A culinary experience like no other",
+    "HasDelivery": false
+}

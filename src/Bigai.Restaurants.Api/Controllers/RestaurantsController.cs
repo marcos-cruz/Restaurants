@@ -1,5 +1,6 @@
 using Bigai.Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
+using Bigai.Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Bigai.Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 
@@ -55,6 +56,21 @@ public class RestaurantsController : ControllerBase
     {
         var isDeleted = await _mediator.Send(new DeleteRestaurantCommand(id));
         if (isDeleted)
+        {
+            return NoContent();
+        }
+
+        return NotFound();
+    }
+
+    [HttpPatch]
+    [Route("{id}")]
+    public async Task<IActionResult> Update([FromRoute] int id, UpdateRestaurantCommand command)
+    {
+        command.Id = id;
+
+        var isUpdated = await _mediator.Send(command);
+        if (isUpdated)
         {
             return NoContent();
         }

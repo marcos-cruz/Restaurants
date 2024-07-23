@@ -43,5 +43,10 @@ namespace Bigai.Restaurants.Infrastructure.Repositories
 
             return restaurant;
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

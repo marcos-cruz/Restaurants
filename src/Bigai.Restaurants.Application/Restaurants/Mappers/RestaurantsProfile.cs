@@ -1,6 +1,7 @@
 using AutoMapper;
 
 using Bigai.Restaurants.Application.Restaurants.Commands.CreateRestaurant;
+using Bigai.Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Dtos;
 using Bigai.Restaurants.Domain.Entities;
 
@@ -18,6 +19,8 @@ public class RestaurantsProfile : Profile
                     Street = src.Street,
                     PostalCode = src.PostalCode,
                 }));
+
+        CreateMap<UpdateRestaurantCommand, Restaurant>();
 
         CreateMap<Restaurant, RestaurantDto>()
             .ForMember(d => d.City, opt =>
