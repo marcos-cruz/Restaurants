@@ -1,14 +1,12 @@
-using Bigai.Restaurants.Application.Restaurants.Dtos;
-
 using FluentValidation;
 
-namespace Bigai.Restaurants.Application.Restaurants.Validators;
+namespace Bigai.Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 
-public class CreateRestaurantValidator : AbstractValidator<CreateRestaurantDto>
+public class CreateRestaurantCommandValidator : AbstractValidator<CreateRestaurantCommand>
 {
     private readonly List<string> validCategories = ["Italian", "Mexican", "Japanese", "American", "Indian"];
 
-    public CreateRestaurantValidator()
+    public CreateRestaurantCommandValidator()
     {
         RuleFor(dto => dto.Name)
             .Length(3, 100);

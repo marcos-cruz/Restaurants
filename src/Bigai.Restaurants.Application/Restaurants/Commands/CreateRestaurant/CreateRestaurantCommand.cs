@@ -1,6 +1,8 @@
-namespace Bigai.Restaurants.Application.Restaurants.Dtos;
+using MediatR;
 
-public class CreateRestaurantDto
+namespace Bigai.Restaurants.Application.Restaurants.Commands.CreateRestaurant;
+
+public class CreateRestaurantCommand : IRequest<int>
 {
     public string Name { get; set; } = default!;
 

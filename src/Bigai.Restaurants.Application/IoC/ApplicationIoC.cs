@@ -1,5 +1,3 @@
-using Bigai.Restaurants.Application.Restaurants.Services;
-
 using FluentValidation;
 using FluentValidation.AspNetCore;
 
@@ -21,7 +19,7 @@ public static class ApplicationIoC
     {
         var applicationAssembly = typeof(ApplicationIoC).Assembly;
 
-        services.AddScoped<IRestaurantsService, RestaurantsService>();
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
 
         services.AddAutoMapper(applicationAssembly);
 
