@@ -27,7 +27,7 @@ public class CreateRestaurantCommandHandler : IRequestHandler<CreateRestaurantCo
 
     public async Task<int> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Creating a new restaurant");
+        _logger.LogInformation("Creating a new restaurant {@Restaurant}", request);
 
         var restaurant = _mapper.Map<Restaurant>(request);
 
