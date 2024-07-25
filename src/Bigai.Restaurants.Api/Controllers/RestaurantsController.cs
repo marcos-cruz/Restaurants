@@ -1,6 +1,7 @@
 using Bigai.Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
+using Bigai.Restaurants.Application.Restaurants.Dtos;
 using Bigai.Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Bigai.Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 
@@ -22,7 +23,9 @@ public class RestaurantsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    // [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<RestaurantDto>))]
+    // public async Task<IActionResult> GetAll()
+    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
     {
         var restaurants = await _mediator.Send(new GetAllRestaurantsQuery());
 
@@ -31,7 +34,9 @@ public class RestaurantsController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<IActionResult> GetById([FromRoute] int id)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)
     {
         var restaurant = await _mediator.Send(new GetRestaurantByIdQuery(id));
         if (restaurant is null)
@@ -43,6 +48,7 @@ public class RestaurantsController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> Create([FromBody] CreateRestaurantCommand command)
     {
         var id = await _mediator.Send(command);
@@ -52,6 +58,8 @@ public class RestaurantsController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
         var isDeleted = await _mediator.Send(new DeleteRestaurantCommand(id));
@@ -65,6 +73,8 @@ public class RestaurantsController : ControllerBase
 
     [HttpPatch]
     [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update([FromRoute] int id, UpdateRestaurantCommand command)
     {
         command.Id = id;
