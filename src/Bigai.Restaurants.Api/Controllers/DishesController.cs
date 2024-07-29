@@ -1,4 +1,5 @@
 using Bigai.Restaurants.Application.Dishes.Commands.CreateDish;
+using Bigai.Restaurants.Application.Dishes.Commands.DeleteDishes;
 using Bigai.Restaurants.Application.Dishes.Queries.GetDishByIdForRestaurant;
 using Bigai.Restaurants.Application.Dishes.Queries.GetDishesForRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Dtos;
@@ -44,6 +45,17 @@ namespace Bigai.Restaurants.Api.Controllers
             var dishes = await _mediator.Send(new GetDishByIdForRestaurantQuery(restaurantId, dishId));
 
             return Ok(dishes);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteDishesForRestauran([FromRoute] int restaurantId)
+        {
+            await _mediator.Send(new DeleteDishesForRestaurantCommand(restaurantId));
+
+            return NotFound();
         }
 
 

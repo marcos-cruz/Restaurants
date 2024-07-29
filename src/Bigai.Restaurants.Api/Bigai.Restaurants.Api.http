@@ -64,3 +64,8 @@ Content-Type: application/json
 
 GET {{BigaiRestaurantsApiHostAddress}}/api/restaurants/{{restaurantId}}/dishes/{{dishId}}
 Content-Type: application/json
+
+###
+
+DELETE {{BigaiRestaurantsApiHostAddress}}/api/restaurants/{{restaurantId}}/dishes
+Content-Type: application/json

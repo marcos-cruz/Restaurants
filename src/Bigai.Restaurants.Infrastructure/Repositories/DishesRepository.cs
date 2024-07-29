@@ -1,3 +1,4 @@
+
 using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Repositories;
 using Bigai.Restaurants.Infrastructure.Persistence;
@@ -19,6 +20,13 @@ namespace Bigai.Restaurants.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
 
             return dish.Id;
+        }
+
+        public async Task DeleteAsync(IEnumerable<Dish> dishes)
+        {
+            _dbContext.Dishes.RemoveRange(dishes);
+
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
