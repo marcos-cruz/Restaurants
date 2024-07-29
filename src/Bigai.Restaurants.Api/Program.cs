@@ -2,6 +2,7 @@ using Bigai.Restaurants.Infrastructure.IoC;
 using Bigai.Restaurants.Infrastructure.Seeders;
 using Bigai.Restaurants.Application.Ioc;
 using Serilog;
+using Bigai.Restaurants.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,8 @@ builder.Host.UseSerilog((context, configuration) =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
+
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();
@@ -28,6 +31,8 @@ var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
 await seeder.Seed();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
