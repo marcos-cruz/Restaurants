@@ -26,9 +26,9 @@ namespace Bigai.Restaurants.Api.Controllers
         {
             command.RestaurantId = restaurantId;
 
-            await _mediator.Send(command);
+            var dishId = await _mediator.Send(command);
 
-            return Created();
+            return CreatedAtAction(nameof(GetByIdForRestaurant), new { restaurantId, dishId }, null);
         }
 
         [HttpGet]
