@@ -1,3 +1,5 @@
+using Bigai.Restaurants.Domain.Exceptions;
+
 namespace Bigai.Restaurants.Api.Middlewares;
 
 public class ErrorHandlingMiddleware : IMiddleware
@@ -14,6 +16,13 @@ public class ErrorHandlingMiddleware : IMiddleware
         try
         {
             await next.Invoke(context);
+        }
+        catch (NotFoundException notFound)
+        {
+            context.Response.StatusCode = 404;
+            await context.Response.WriteAsync(notFound.Message);
+
+            _logger.LogWarning(notFound.Message);
         }
         catch (Exception ex)
         {

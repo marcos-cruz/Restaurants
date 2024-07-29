@@ -1,4 +1,5 @@
 @BigaiRestaurantsApiHostAddress = http://localhost:7000
+@restaurantId = 123
 
 GET {{BigaiRestaurantsApiHostAddress}}/api/restaurants
 Accept: application/json
@@ -39,4 +40,16 @@ Content-Type: application/json
     "Name": "Spicy Delights",
     "Description": "A culinary experience like no other",
     "HasDelivery": false
+}
+
+###
+
+POST {{BigaiRestaurantsApiHostAddress}}/api/restaurants/{{restaurantId}}/dishes
+Content-Type: application/json
+
+{
+    "Name": "Spaguetti Bolognese",
+    "Description": "Classic Italian pasta dish with rich meat sauce",
+    "Price": 28.59,
+    "KiloCalories": 7
 }
