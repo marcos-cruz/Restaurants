@@ -1,5 +1,6 @@
 @BigaiRestaurantsApiHostAddress = http://localhost:7000
 @restaurantId = 123
+@dishId = 3
 
 GET {{BigaiRestaurantsApiHostAddress}}/api/restaurants
 Accept: application/json
@@ -53,3 +54,13 @@ Content-Type: application/json
     "Price": 28.59,
     "KiloCalories": 7
 }
+
+###
+
+GET {{BigaiRestaurantsApiHostAddress}}/api/restaurants/{{restaurantId}}/dishes
+Content-Type: application/json
+
+###
+
+GET {{BigaiRestaurantsApiHostAddress}}/api/restaurants/{{restaurantId}}/dishes/{{dishId}}
+Content-Type: application/json
