@@ -1,3 +1,5 @@
+using Bigai.Restaurants.Application.User;
+
 using FluentValidation;
 using FluentValidation.AspNetCore;
 
@@ -25,6 +27,10 @@ public static class ApplicationIoC
 
         services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
+
+        services.AddScoped<IUserContext, UserContext>();
+
+        services.AddHttpContextAccessor();
 
 
         return services;
