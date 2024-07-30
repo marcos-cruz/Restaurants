@@ -8,6 +8,7 @@ Represents the layer responsible, for example, for accessing the database and ex
   - [Adding Restaurant Db Context](#adding-restaurant-db-context)
   - [Generating Migrations](#generating-migrations)
   - [Applying Migrations](#applying-migrations)
+  - [Removing Migrations](#removing-migrations)
   
 [Back to Index](../README.md)
 
@@ -64,6 +65,8 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools --version 8.0.0
 
 dotnet ef migrations add InitialCreate --output-dir Data\Migrations
 
+dotnet ef migrations add InitialCreate --project src\Bigai.Restaurants.Infrastructure\Bigai.Restaurants.Infrastructure.csproj --startup-project src\Bigai.Restaurants.Api\Bigai.Restaurants.Api.csproj --output-dir Data\Migrations
+
 ```
 
 [Back to top](#setup-infrastructure)
@@ -73,6 +76,20 @@ dotnet ef migrations add InitialCreate --output-dir Data\Migrations
 ```powershell
 
 dotnet ef database update
+
+dotnet ef database update --project src\Bigai.Restaurants.Infrastructure\Bigai.Restaurants.Infrastructure.csproj --startup-project src\Bigai.Restaurants.Api\Bigai.Restaurants.Api.csproj
+
+```
+
+[Back to top](#setup-infrastructure)
+
+## Removing Migrations
+
+```powershell
+
+dotnet ef migrations remove
+
+dotnet ef migrations remove --project src\Bigai.Restaurants.Infrastructure\Bigai.Restaurants.Infrastructure.csproj --startup-project src\Bigai.Restaurants.Api\Bigai.Restaurants.Api.csproj
 
 ```
 

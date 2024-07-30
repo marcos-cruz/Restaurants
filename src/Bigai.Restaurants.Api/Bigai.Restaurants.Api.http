@@ -69,3 +69,24 @@ Content-Type: application/json
 
 DELETE {{BigaiRestaurantsApiHostAddress}}/api/restaurants/{{restaurantId}}/dishes
 Content-Type: application/json
+
+
+###
+
+POST {{BigaiRestaurantsApiHostAddress}}/register
+Content-Type: application/json
+
+{
+    "email": "testuser@test.com",
+    "password": "Passw0rd!"
+}
+
+###
+
+POST {{BigaiRestaurantsApiHostAddress}}/login
+Content-Type: application/json
+
+{
+    "email": "testuser@test.com",
+    "password": "Passw0rd!"
+}

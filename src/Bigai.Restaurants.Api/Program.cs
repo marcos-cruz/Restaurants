@@ -3,6 +3,7 @@ using Bigai.Restaurants.Infrastructure.Seeders;
 using Bigai.Restaurants.Application.Ioc;
 using Serilog;
 using Bigai.Restaurants.Api.Middlewares;
+using Bigai.Restaurants.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapIdentityApi<User>();
 
 app.UseAuthorization();
 

@@ -1,3 +1,4 @@
+using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Repositories;
 using Bigai.Restaurants.Infrastructure.Persistence;
 using Bigai.Restaurants.Infrastructure.Repositories;
@@ -26,6 +27,9 @@ public static class InfrastructureIoC
         services.AddDbContext<RestaurantsDbContext>(options =>
             options.UseSqlServer(connectionString)
                    .EnableSensitiveDataLogging());
+
+        services.AddIdentityApiEndpoints<User>()
+                .AddEntityFrameworkStores<RestaurantsDbContext>();
 
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
