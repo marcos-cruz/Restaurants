@@ -7,12 +7,14 @@ using Bigai.Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bigai.Restaurants.Api.Controllers;
 
 [ApiController]
 [Route("api/restaurants")]
+[Authorize]
 public class RestaurantsController : ControllerBase
 {
     private readonly IMediator _mediator;
