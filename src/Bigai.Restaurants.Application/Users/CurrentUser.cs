@@ -1,4 +1,4 @@
-namespace Bigai.Restaurants.Application.User;
+namespace Bigai.Restaurants.Application.Users;
 
 public record CurrentUser(string UserId, string Email, IEnumerable<string> Roles)
 {

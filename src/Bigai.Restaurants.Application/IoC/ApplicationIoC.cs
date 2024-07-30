@@ -1,4 +1,4 @@
-using Bigai.Restaurants.Application.User;
+using Bigai.Restaurants.Application.Users;
 
 using FluentValidation;
 using FluentValidation.AspNetCore;

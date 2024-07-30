@@ -2,7 +2,7 @@ using System.Security.Claims;
 
 using Microsoft.AspNetCore.Http;
 
-namespace Bigai.Restaurants.Application.User;
+namespace Bigai.Restaurants.Application.Users;
 
 public class UserContext : IUserContext
 {
