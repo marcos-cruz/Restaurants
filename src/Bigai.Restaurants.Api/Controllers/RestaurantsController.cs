@@ -4,6 +4,7 @@ using Bigai.Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Dtos;
 using Bigai.Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Bigai.Restaurants.Application.Restaurants.Queries.GetRestaurantById;
+using Bigai.Restaurants.Domain.Constants;
 
 using MediatR;
 
@@ -50,6 +51,7 @@ public class RestaurantsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = UserRoles.Owner)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> Create([FromBody] CreateRestaurantCommand command)
     {

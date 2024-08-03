@@ -1,6 +1,9 @@
 
+using Bigai.Restaurants.Domain.Constants;
 using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Infrastructure.Persistence;
+
+using Microsoft.AspNetCore.Identity;
 
 namespace Bigai.Restaurants.Infrastructure.Seeders;
 
@@ -21,6 +24,13 @@ internal class RestaurantSeeder : IRestaurantSeeder
             {
                 var restaurants = GetRestaurants();
                 _dbContext.Restaurants.AddRange(restaurants);
+                await _dbContext.SaveChangesAsync();
+            }
+
+            if (!_dbContext.Roles.Any())
+            {
+                var roles = GetRoles();
+                _dbContext.Roles.AddRange(roles);
                 await _dbContext.SaveChangesAsync();
             }
         }
@@ -76,5 +86,16 @@ internal class RestaurantSeeder : IRestaurantSeeder
         ];
 
         return restaurants;
+    }
+
+    private IEnumerable<IdentityRole> GetRoles()
+    {
+        List<IdentityRole> roleList = [
+            new (UserRoles.Admin),
+            new (UserRoles.Owner),
+            new (UserRoles.User)
+        ];
+
+        return roleList;
     }
 }
