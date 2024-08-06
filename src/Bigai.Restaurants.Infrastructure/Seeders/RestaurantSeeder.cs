@@ -91,9 +91,18 @@ internal class RestaurantSeeder : IRestaurantSeeder
     private IEnumerable<IdentityRole> GetRoles()
     {
         List<IdentityRole> roleList = [
-            new (UserRoles.Admin),
-            new (UserRoles.Owner),
+            new (UserRoles.Admin)
+            {
+                NormalizedName = UserRoles.Admin.ToUpper(),
+            },
+            new (UserRoles.Owner)
+            {
+                NormalizedName = UserRoles.Owner.ToUpper(),
+            },
             new (UserRoles.User)
+            {
+                NormalizedName = UserRoles.User.ToUpper(),
+            },
         ];
 
         return roleList;

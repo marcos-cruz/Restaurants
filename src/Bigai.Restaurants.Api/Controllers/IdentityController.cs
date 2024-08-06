@@ -1,4 +1,6 @@
 using Bigai.Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
+using Bigai.Restaurants.Application.Users.Commands.AssignUserRole;
+using Bigai.Restaurants.Domain.Constants;
 
 using MediatR;
 
@@ -23,6 +25,21 @@ public class IdentityController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update([FromBody] UpdateRestaurantCommand command)
+    {
+        var isUpdated = await _mediator.Send(command);
+        if (isUpdated)
+        {
+            return NoContent();
+        }
+
+        return NotFound();
+    }
+
+    [HttpPost("userRole")]
+    [Authorize(Roles = UserRoles.Admin)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> AssignUserRole([FromBody] AssignUserRoleCommand command)
     {
         var isUpdated = await _mediator.Send(command);
         if (isUpdated)
