@@ -5,6 +5,7 @@ using Bigai.Restaurants.Application.Restaurants.Dtos;
 using Bigai.Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Bigai.Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 using Bigai.Restaurants.Domain.Constants;
+using Bigai.Restaurants.Infrastructure.Authorization;
 
 using MediatR;
 
@@ -37,6 +38,7 @@ public class RestaurantsController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
+    [Authorize(Policy = PolicyNames.HasNationality)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)
