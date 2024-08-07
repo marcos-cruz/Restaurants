@@ -1,5 +1,6 @@
 using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Repositories;
+using Bigai.Restaurants.Infrastructure.Authorization;
 using Bigai.Restaurants.Infrastructure.Persistence;
 using Bigai.Restaurants.Infrastructure.Repositories;
 using Bigai.Restaurants.Infrastructure.Seeders;
@@ -31,6 +32,7 @@ public static class InfrastructureIoC
 
         services.AddIdentityApiEndpoints<User>()
                 .AddRoles<IdentityRole>()
+                .AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipalFactory>()
                 .AddEntityFrameworkStores<RestaurantsDbContext>();
 
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
