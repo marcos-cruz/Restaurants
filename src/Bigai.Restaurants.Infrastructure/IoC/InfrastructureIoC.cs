@@ -1,10 +1,12 @@
 using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Repositories;
 using Bigai.Restaurants.Infrastructure.Authorization;
+using Bigai.Restaurants.Infrastructure.Authorization.Requirements;
 using Bigai.Restaurants.Infrastructure.Persistence;
 using Bigai.Restaurants.Infrastructure.Repositories;
 using Bigai.Restaurants.Infrastructure.Seeders;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -40,7 +42,10 @@ public static class InfrastructureIoC
         services.AddScoped<IDishesRepository, DishesRepository>();
 
         services.AddAuthorizationBuilder()
-                .AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "German", "Polish"));
+                .AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "German", "Polish"))
+                .AddPolicy(PolicyNames.HasAtLeast20, builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
+
+        services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 
         return services;
     }

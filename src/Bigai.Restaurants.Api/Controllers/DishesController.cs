@@ -3,15 +3,18 @@ using Bigai.Restaurants.Application.Dishes.Commands.DeleteDishes;
 using Bigai.Restaurants.Application.Dishes.Queries.GetDishByIdForRestaurant;
 using Bigai.Restaurants.Application.Dishes.Queries.GetDishesForRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Dtos;
+using Bigai.Restaurants.Infrastructure.Authorization;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bigai.Restaurants.Api.Controllers
 {
     [ApiController]
     [Route("api/restaurants/{restaurantId}/dishes")]
+    [Authorize]
     public class DishesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -32,6 +35,7 @@ namespace Bigai.Restaurants.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = PolicyNames.HasAtLeast20)]
         public async Task<ActionResult<IEnumerable<DishDto>>> GetAllForRestaurant([FromRoute] int restaurantId)
         {
             var dishes = await _mediator.Send(new GetDishesForRestaurantQuery(restaurantId));
