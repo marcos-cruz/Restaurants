@@ -29,10 +29,11 @@ public class RestaurantsController : ControllerBase
     [HttpGet]
     // [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<RestaurantDto>))]
     // public async Task<IActionResult> GetAll()
-    [Authorize(PolicyNames.HasCreatedAtLeast2Restaurants)]
-    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
+    // [Authorize(PolicyNames.HasCreatedAtLeast2Restaurants)]
+    [AllowAnonymous]
+    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll([FromQuery] GetAllRestaurantsQuery query)
     {
-        var restaurants = await _mediator.Send(new GetAllRestaurantsQuery());
+        var restaurants = await _mediator.Send(query);
 
         return Ok(restaurants);
     }
