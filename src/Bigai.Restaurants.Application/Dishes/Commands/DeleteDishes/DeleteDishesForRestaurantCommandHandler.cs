@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 using AutoMapper;
 
 using Bigai.Restaurants.Domain.Entities;
+using Bigai.Restaurants.Domain.Enums;
 using Bigai.Restaurants.Domain.Exceptions;
 using Bigai.Restaurants.Domain.Repositories;
+using Bigai.Restaurants.Domain.Services;
 
 using MediatR;
 
@@ -20,17 +17,17 @@ public class DeleteDishesForRestaurantCommandHandler : IRequestHandler<DeleteDis
     private readonly IRestaurantsRepository _restaurantsRepository;
     private readonly IDishesRepository _dishesRepository;
     private readonly ILogger<DeleteDishesForRestaurantCommandHandler> _logger;
-    private readonly IMapper _mapper;
+    private readonly IRestaurantAuthorizationService _restaurantAuthorizationService;
 
     public DeleteDishesForRestaurantCommandHandler(IRestaurantsRepository restaurantsRepository,
                                                    IDishesRepository dishesRepository,
                                                    ILogger<DeleteDishesForRestaurantCommandHandler> logger,
-                                                   IMapper mapper)
+                                                   IRestaurantAuthorizationService restaurantAuthorizationService)
     {
         _restaurantsRepository = restaurantsRepository;
         _dishesRepository = dishesRepository;
         _logger = logger;
-        _mapper = mapper;
+        _restaurantAuthorizationService = restaurantAuthorizationService;
     }
 
     public async Task Handle(DeleteDishesForRestaurantCommand request, CancellationToken cancellationToken)
@@ -43,6 +40,12 @@ public class DeleteDishesForRestaurantCommandHandler : IRequestHandler<DeleteDis
         {
             throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());
         }
+
+        if (!_restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Delete))
+        {
+            throw new ForbidException();
+        }
+
 
         await _dishesRepository.DeleteAsync(restaurant.Dishes);
     }

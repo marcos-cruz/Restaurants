@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 using Bigai.Restaurants.Domain.Entities;

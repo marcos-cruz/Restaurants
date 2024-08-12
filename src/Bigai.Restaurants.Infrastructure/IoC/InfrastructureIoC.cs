@@ -1,7 +1,9 @@
 using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Repositories;
+using Bigai.Restaurants.Domain.Services;
 using Bigai.Restaurants.Infrastructure.Authorization;
 using Bigai.Restaurants.Infrastructure.Authorization.Requirements;
+using Bigai.Restaurants.Infrastructure.Authorization.Services;
 using Bigai.Restaurants.Infrastructure.Persistence;
 using Bigai.Restaurants.Infrastructure.Repositories;
 using Bigai.Restaurants.Infrastructure.Seeders;
@@ -46,6 +48,7 @@ public static class InfrastructureIoC
                 .AddPolicy(PolicyNames.HasAtLeast20, builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
 
         services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+        services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
 
         return services;
     }

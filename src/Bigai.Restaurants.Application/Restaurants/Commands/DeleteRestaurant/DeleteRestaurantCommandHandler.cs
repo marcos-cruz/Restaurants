@@ -1,8 +1,8 @@
 
-using AutoMapper;
-
-using Bigai.Restaurants.Domain.Entities;
+using Bigai.Restaurants.Domain.Enums;
+using Bigai.Restaurants.Domain.Exceptions;
 using Bigai.Restaurants.Domain.Repositories;
+using Bigai.Restaurants.Domain.Services;
 
 using MediatR;
 
@@ -14,15 +14,15 @@ public class DeleteRestaurantCommandHandler : IRequestHandler<DeleteRestaurantCo
 {
     private readonly IRestaurantsRepository _restaurantsRepository;
     private readonly ILogger<DeleteRestaurantCommandHandler> _logger;
-    private readonly IMapper _mapper;
+    private readonly IRestaurantAuthorizationService _restaurantAuthorizationService;
 
     public DeleteRestaurantCommandHandler(IRestaurantsRepository restaurantsRepository,
                                           ILogger<DeleteRestaurantCommandHandler> logger,
-                                          IMapper mapper)
+                                          IRestaurantAuthorizationService restaurantAuthorizationService)
     {
         _restaurantsRepository = restaurantsRepository;
         _logger = logger;
-        _mapper = mapper;
+        _restaurantAuthorizationService = restaurantAuthorizationService;
     }
 
     public async Task<bool> Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
@@ -34,6 +34,11 @@ public class DeleteRestaurantCommandHandler : IRequestHandler<DeleteRestaurantCo
         if (restaurant is null)
         {
             return false;
+        }
+
+        if (!_restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Delete))
+        {
+            throw new ForbidException();
         }
 
         await _restaurantsRepository.DeleteAsync(restaurant);

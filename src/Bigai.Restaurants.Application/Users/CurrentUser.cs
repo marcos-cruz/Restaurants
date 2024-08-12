@@ -6,5 +6,5 @@ public record CurrentUser(string UserId,
                           string? Nationality,
                           DateOnly? DateOfBirth)
 {
-    public bool IsInROle(string role) => Roles.Contains(role);
+    public bool IsInRole(string role) => Roles.Contains(role);
 }
