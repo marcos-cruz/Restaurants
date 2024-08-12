@@ -1,3 +1,4 @@
+using Bigai.Restaurants.Application.Common;
 using Bigai.Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Bigai.Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
@@ -31,11 +32,11 @@ public class RestaurantsController : ControllerBase
     // public async Task<IActionResult> GetAll()
     // [Authorize(PolicyNames.HasCreatedAtLeast2Restaurants)]
     [AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll([FromQuery] GetAllRestaurantsQuery query)
+    public async Task<ActionResult<PageResult<RestaurantDto>>> GetAll([FromQuery] GetAllRestaurantsQuery query)
     {
-        var restaurants = await _mediator.Send(query);
+        var result = await _mediator.Send(query);
 
-        return Ok(restaurants);
+        return Ok(result);
     }
 
     [HttpGet]

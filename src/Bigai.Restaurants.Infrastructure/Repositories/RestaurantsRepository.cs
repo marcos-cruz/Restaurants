@@ -36,16 +36,21 @@ namespace Bigai.Restaurants.Infrastructure.Repositories
             return restaurants;
         }
 
-        public async Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase)
+        public async Task<(IEnumerable<Restaurant>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber)
         {
             var searchPhraseLower = searchPhrase?.ToLower();
 
-            var restaurants = await _dbContext.Restaurants.Where(r => searchPhraseLower == null ||
-                                                                      (r.Name.ToLower().Contains(searchPhraseLower) ||
-                                                                      r.Description.ToLower().Contains(searchPhraseLower)))
-                                                          .ToListAsync();
+            var baseQuery = _dbContext.Restaurants.Where(r => searchPhraseLower == null ||
+                                                              (r.Name.ToLower().Contains(searchPhraseLower) ||
+                                                               r.Description.ToLower().Contains(searchPhraseLower)));
 
-            return restaurants;
+            var totalCount = await baseQuery.CountAsync();
+
+            var restaurants = await baseQuery.Skip(pageSize * (pageNumber - 1))
+                                             .Take(pageSize)
+                                             .ToListAsync();
+
+            return (restaurants, totalCount);
         }
 
         public async Task<Restaurant?> GetByIdAsync(int id)

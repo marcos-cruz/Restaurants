@@ -1,6 +1,6 @@
-
 using AutoMapper;
 
+using Bigai.Restaurants.Application.Common;
 using Bigai.Restaurants.Application.Restaurants.Dtos;
 using Bigai.Restaurants.Domain.Repositories;
 
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Bigai.Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 
-public class GetAllRestaurantsQueryHandler : IRequestHandler<GetAllRestaurantsQuery, IEnumerable<RestaurantDto>>
+public class GetAllRestaurantsQueryHandler : IRequestHandler<GetAllRestaurantsQuery, PageResult<RestaurantDto>>
 {
     private readonly IRestaurantsRepository _restaurantsRepository;
     private readonly ILogger<GetAllRestaurantsQueryHandler> _logger;
@@ -25,14 +25,16 @@ public class GetAllRestaurantsQueryHandler : IRequestHandler<GetAllRestaurantsQu
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<RestaurantDto>> Handle(GetAllRestaurantsQuery request, CancellationToken cancellationToken)
+    public async Task<PageResult<RestaurantDto>> Handle(GetAllRestaurantsQuery request, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Getting all restaurants");
 
-        var restaurants = await _restaurantsRepository.GetAllAsync();
+        var (restaurants, totalCount) = await _restaurantsRepository.GetAllMatchingAsync(request.SearchPhrase, request.PageSize, request.PageNumber);
 
         var restaurantsDto = _mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 
-        return restaurantsDto!;
+        var result = new PageResult<RestaurantDto>(restaurantsDto, totalCount, request.PageSize, request.PageNumber);
+
+        return result;
     }
 }
