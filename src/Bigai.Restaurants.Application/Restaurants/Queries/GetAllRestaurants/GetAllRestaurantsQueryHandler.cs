@@ -29,7 +29,11 @@ public class GetAllRestaurantsQueryHandler : IRequestHandler<GetAllRestaurantsQu
     {
         _logger.LogInformation("Getting all restaurants");
 
-        var (restaurants, totalCount) = await _restaurantsRepository.GetAllMatchingAsync(request.SearchPhrase, request.PageSize, request.PageNumber);
+        var (restaurants, totalCount) = await _restaurantsRepository.GetAllMatchingAsync(request.SearchPhrase,
+                                                                                         request.PageSize,
+                                                                                         request.PageNumber,
+                                                                                         request.SortBy,
+                                                                                         request.SortOrder);
 
         var restaurantsDto = _mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 
