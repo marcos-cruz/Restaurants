@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Bigai.Restaurants.Infrastructure.Authorization.Requirements;
 
-public class CreateMultipleRestaurantsRequirementHandler : AuthorizationHandler<CreateMultipleRestaurantsRequirement>
+internal class CreateMultipleRestaurantsRequirementHandler : AuthorizationHandler<CreateMultipleRestaurantsRequirement>
 {
     private readonly ILogger<CreateMultipleRestaurantsRequirementHandler> _logger;
     private readonly IUserContext _userContext;
