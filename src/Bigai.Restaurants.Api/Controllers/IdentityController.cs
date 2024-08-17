@@ -27,13 +27,9 @@ public class IdentityController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update([FromBody] UpdateRestaurantCommand command)
     {
-        var isUpdated = await _mediator.Send(command);
-        if (isUpdated)
-        {
-            return NoContent();
-        }
+        await _mediator.Send(command);
 
-        return NotFound();
+        return NoContent();
     }
 
     [HttpPost("userRole")]
@@ -65,5 +61,4 @@ public class IdentityController : ControllerBase
 
         return NotFound();
     }
-
 }
