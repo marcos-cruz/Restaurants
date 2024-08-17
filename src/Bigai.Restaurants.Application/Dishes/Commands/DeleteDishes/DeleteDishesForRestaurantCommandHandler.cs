@@ -1,5 +1,3 @@
-using AutoMapper;
-
 using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Enums;
 using Bigai.Restaurants.Domain.Exceptions;

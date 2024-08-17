@@ -1,8 +1,4 @@
-using System.ComponentModel;
-
 using Bigai.Restaurants.Application.Restaurants.Commands.CreateRestaurant;
-
-using FluentAssertions;
 
 using FluentValidation.TestHelper;
 
