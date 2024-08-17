@@ -87,14 +87,9 @@ public class RestaurantsController : ControllerBase
     public async Task<IActionResult> Update([FromRoute] int id, UpdateRestaurantCommand command)
     {
         command.Id = id;
+        await _mediator.Send(command);
 
-        var isUpdated = await _mediator.Send(command);
-        if (isUpdated)
-        {
-            return NoContent();
-        }
-
-        return NotFound();
+        return NoContent();
     }
 
 }

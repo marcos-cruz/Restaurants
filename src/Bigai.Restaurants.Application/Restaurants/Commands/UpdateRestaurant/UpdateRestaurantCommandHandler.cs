@@ -1,5 +1,6 @@
 using AutoMapper;
 
+using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Enums;
 using Bigai.Restaurants.Domain.Exceptions;
 using Bigai.Restaurants.Domain.Repositories;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Bigai.Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 
-public class UpdateRestaurantCommandHandler : IRequestHandler<UpdateRestaurantCommand, bool>
+public class UpdateRestaurantCommandHandler : IRequestHandler<UpdateRestaurantCommand>
 {
     private readonly IRestaurantsRepository _restaurantsRepository;
     private readonly ILogger<UpdateRestaurantCommandHandler> _logger;
@@ -29,14 +30,14 @@ public class UpdateRestaurantCommandHandler : IRequestHandler<UpdateRestaurantCo
         _restaurantAuthorizationService = restaurantAuthorizationService;
     }
 
-    public async Task<bool> Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Updating restaurant {RestaurantId} with {@UpdatedRestaurant}", request.Id, request);
 
         var restaurant = await _restaurantsRepository.GetByIdAsync(request.Id);
         if (restaurant is null)
         {
-            return false;
+            throw new NotFoundException(nameof(Restaurant), request.Id.ToString());
         }
 
         if (!_restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Update))
@@ -47,7 +48,5 @@ public class UpdateRestaurantCommandHandler : IRequestHandler<UpdateRestaurantCo
         _mapper.Map(request, restaurant);
 
         await _restaurantsRepository.SaveChangesAsync();
-
-        return true;
     }
 }
