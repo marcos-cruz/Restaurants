@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bigai.Restaurants.Applicati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bigai.Restaurants.Infrastructure.Tests", "tests\Bigai.Restaurants.Infrastructure.Tests\Bigai.Restaurants.Infrastructure.Tests.csproj", "{DFF4B7B7-701D-425A-8A60-DBD76F8C964E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bigai.Restaurants.Api.Tests", "tests\Bigai.Restaurants.Api.Tests\Bigai.Restaurants.Api.Tests.csproj", "{208C1FF4-65D2-4EAB-B8B4-1FAE4E73A787}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{DFF4B7B7-701D-425A-8A60-DBD76F8C964E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFF4B7B7-701D-425A-8A60-DBD76F8C964E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFF4B7B7-701D-425A-8A60-DBD76F8C964E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{208C1FF4-65D2-4EAB-B8B4-1FAE4E73A787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{208C1FF4-65D2-4EAB-B8B4-1FAE4E73A787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{208C1FF4-65D2-4EAB-B8B4-1FAE4E73A787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{208C1FF4-65D2-4EAB-B8B4-1FAE4E73A787}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,5 +72,6 @@ Global
 		{09529E3E-AC58-475C-A858-73D1E4B607E3} = {BF25BE4C-BAA2-4EEA-98AE-5E558D11F8C2}
 		{E5A4675B-4482-4B74-83D2-B77C1B53DFC0} = {16D781A7-0360-43BA-96B8-F2E8E287E0A0}
 		{DFF4B7B7-701D-425A-8A60-DBD76F8C964E} = {16D781A7-0360-43BA-96B8-F2E8E287E0A0}
+		{208C1FF4-65D2-4EAB-B8B4-1FAE4E73A787} = {16D781A7-0360-43BA-96B8-F2E8E287E0A0}
 	EndGlobalSection
 EndGlobal
