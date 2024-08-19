@@ -20,19 +20,19 @@ internal class RestaurantSeeder : IRestaurantSeeder
     {
         if (await _dbContext.Database.CanConnectAsync())
         {
-            if (!_dbContext.Restaurants.Any())
-            {
-                var restaurants = GetRestaurants();
-                _dbContext.Restaurants.AddRange(restaurants);
-                await _dbContext.SaveChangesAsync();
-            }
-
             if (!_dbContext.Roles.Any())
             {
                 var roles = GetRoles();
                 _dbContext.Roles.AddRange(roles);
                 await _dbContext.SaveChangesAsync();
             }
+
+            // if (!_dbContext.Restaurants.Any())
+            // {
+            //     var restaurants = GetRestaurants();
+            //     _dbContext.Restaurants.AddRange(restaurants);
+            //     await _dbContext.SaveChangesAsync();
+            // }
         }
     }
 
@@ -46,6 +46,7 @@ internal class RestaurantSeeder : IRestaurantSeeder
                 Description = "KFC (short for Kentucky Fried Chicken) is an American fast food restaurant chain headquartered in Louisville, Kentucky, that specializes in fried chicken.",
                 ContactEmail = "contact@kfc.com",
                 HasDelivery = true,
+                OwnerId = "1",
                 Dishes =
                 [
                     new ()
@@ -76,6 +77,7 @@ internal class RestaurantSeeder : IRestaurantSeeder
                 Description = "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
                 ContactEmail = "contact@mcdonald.com",
                 HasDelivery = true,
+                OwnerId = "1",
                 Address = new Address()
                 {
                     City = "London",

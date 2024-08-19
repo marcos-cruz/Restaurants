@@ -90,7 +90,13 @@ namespace Bigai.Restaurants.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Restaurants");
                 });
@@ -310,6 +316,12 @@ namespace Bigai.Restaurants.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Bigai.Restaurants.Domain.Entities.Restaurant", b =>
                 {
+                    b.HasOne("Bigai.Restaurants.Domain.Entities.User", "Owner")
+                        .WithMany("OwnerRestaurants")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.OwnsOne("Bigai.Restaurants.Domain.Entities.Address", "Address", b1 =>
                         {
                             b1.Property<int>("RestaurantId")
@@ -333,6 +345,8 @@ namespace Bigai.Restaurants.Infrastructure.Data.Migrations
                         });
 
                     b.Navigation("Address");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -389,6 +403,11 @@ namespace Bigai.Restaurants.Infrastructure.Data.Migrations
             modelBuilder.Entity("Bigai.Restaurants.Domain.Entities.Restaurant", b =>
                 {
                     b.Navigation("Dishes");
+                });
+
+            modelBuilder.Entity("Bigai.Restaurants.Domain.Entities.User", b =>
+                {
+                    b.Navigation("OwnerRestaurants");
                 });
 #pragma warning restore 612, 618
         }
