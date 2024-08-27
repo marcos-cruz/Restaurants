@@ -22,7 +22,7 @@ public class ErrorHandlingMiddleware : IMiddleware
             context.Response.StatusCode = 404;
             await context.Response.WriteAsync(notFound.Message);
 
-            _logger.LogWarning(notFound.Message);
+            _logger.LogWarning(notFound, notFound.Message);
         }
         catch (ForbidException ex)
         {

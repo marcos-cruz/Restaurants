@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using Bigai.Restaurants.Application.Restaurants.Dtos;
 using Bigai.Restaurants.Domain.Entities;
 using Bigai.Restaurants.Domain.Repositories;
+using Bigai.Restaurants.Infrastructure.Seeders;
 
 using FluentAssertions;
 
@@ -15,14 +16,13 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using Moq;
 
-using Xunit.Sdk;
-
 namespace Bigai.Restaurants.Api.Tests.Controllers;
 
 public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
     private readonly Mock<IRestaurantsRepository> _restaurantsRepositoryMock = new();
+    private readonly Mock<IRestaurantSeeder> _restaurantsSeederMock = new();
 
     public RestaurantsControllerTests(WebApplicationFactory<Program> factory)
     {
@@ -31,7 +31,10 @@ public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Pr
             builder.ConfigureTestServices(services =>
             {
                 services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
+
                 services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantsRepository), _ => _restaurantsRepositoryMock.Object));
+
+                services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantSeeder), _ => _restaurantsSeederMock.Object));
             });
         });
     }

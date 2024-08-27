@@ -17,23 +17,23 @@ internal class RestaurantsDbContext : IdentityDbContext<User>
 
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(builder);
 
-        modelBuilder.Entity<Restaurant>()
+        builder.Entity<Restaurant>()
                     .OwnsOne(r => r.Address);
 
-        modelBuilder.Entity<Restaurant>()
+        builder.Entity<Restaurant>()
                     .HasMany(r => r.Dishes)
                     .WithOne()
                     .HasForeignKey(d => d.RestaurantId);
 
-        modelBuilder.Entity<User>()
+        builder.Entity<User>()
                     .HasMany(user => user.OwnerRestaurants)
                     .WithOne(restaurant => restaurant.Owner)
                     .HasForeignKey(restaurant => restaurant.OwnerId);
 
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }

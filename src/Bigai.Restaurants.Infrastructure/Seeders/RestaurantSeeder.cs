@@ -49,7 +49,6 @@ internal class RestaurantSeeder : IRestaurantSeeder
         User owner = new User()
         {
             Email = "owner-seed@test.com",
-
         };
 
         List<Restaurant> restaurants = [

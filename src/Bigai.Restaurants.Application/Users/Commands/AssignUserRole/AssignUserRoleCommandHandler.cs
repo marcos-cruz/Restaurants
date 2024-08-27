@@ -13,17 +13,14 @@ public class AssignUserRoleCommandHandler : IRequestHandler<AssignUserRoleComman
     private readonly ILogger<AssignUserRoleCommandHandler> _logger;
     private readonly UserManager<User> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly IUserContext _userContext;
 
     public AssignUserRoleCommandHandler(ILogger<AssignUserRoleCommandHandler> logger,
                                         UserManager<User> userManager,
-                                        RoleManager<IdentityRole> roleManager,
-                                        IUserContext userContext)
+                                        RoleManager<IdentityRole> roleManager)
     {
         _logger = logger;
         _userManager = userManager;
         _roleManager = roleManager;
-        _userContext = userContext;
     }
 
     public async Task<bool> Handle(AssignUserRoleCommand request, CancellationToken cancellationToken)

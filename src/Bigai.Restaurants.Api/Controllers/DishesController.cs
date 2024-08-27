@@ -52,7 +52,7 @@ namespace Bigai.Restaurants.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{restaurantId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteDishesForRestauran([FromRoute] int restaurantId)

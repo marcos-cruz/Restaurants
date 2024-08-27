@@ -4,9 +4,9 @@ namespace Bigai.Restaurants.Api.Middlewares;
 
 public class RequestTimeLoggingMiddleware : IMiddleware
 {
-    private readonly ILogger<ErrorHandlingMiddleware> _logger;
+    private readonly ILogger<RequestTimeLoggingMiddleware> _logger;
 
-    public RequestTimeLoggingMiddleware(ILogger<ErrorHandlingMiddleware> logger)
+    public RequestTimeLoggingMiddleware(ILogger<RequestTimeLoggingMiddleware> logger)
     {
         _logger = logger;
     }
